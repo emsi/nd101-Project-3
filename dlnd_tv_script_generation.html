@@ -11783,7 +11783,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -11813,7 +11813,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">view_sentence_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -11884,6 +11884,51 @@ Barney_Gumble: Yeah, you should only drink to enhance your social skills.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Obtain-more-statsfor-sequence-generation">Obtain more statsfor sequence generation<a class="anchor-link" href="#Obtain-more-statsfor-sequence-generation">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="n">sent_lens</span><span class="o">=</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
+<span class="n">sent_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sent_lens</span><span class="p">)</span>
+<span class="n">sent_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sent_lens</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, std: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sent_lens</span><span class="p">)),</span> <span class="n">sent_std</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Mean + 2*sigma: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sent_mean</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">sent_std</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>DescribeResult(nobs=4257, minmax=(1, 92), mean=11.565656565656566, variance=74.003735664919873, skewness=1.7885588612643386, kurtosis=6.067266488014045), std: 8.601531936447312
+Mean + 2*sigma: 28.768720438551192
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Implement-Preprocessing-Functions">Implement Preprocessing Functions<a class="anchor-link" href="#Implement-Preprocessing-Functions">&#182;</a></h2><p>The first thing to do to any dataset is preprocessing.  Implement the following preprocessing functions below:</p>
 <ul>
 <li>Lookup Table</li>
@@ -11901,7 +11946,7 @@ Barney_Gumble: Yeah, you should only drink to enhance your social skills.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -12372,7 +12417,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Implement Function</span>
     
-    <span class="n">Outputs</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dynamic_rnn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="c1"># XXX: I&#39;m not 1005 sure about that</span>
+    <span class="n">Outputs</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dynamic_rnn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="n">FinalState</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;final_state&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">Outputs</span><span class="p">,</span> <span class="n">FinalState</span>
@@ -12628,11 +12673,11 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[151]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Number of Epochs</span>
-<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">800</span>          <span class="c1"># training loss is low and not improving &quot;much&quot; with more training;</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">101</span>          <span class="c1"># training loss is low and not improving &quot;much&quot; with more training;</span>
                           <span class="c1"># I added early break to trainign loop to finish training once trainign loss drops below 0.05</span>
 <span class="c1"># Batch Size</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>          <span class="c1"># large enough for my GPU and small enough so I do not have to decrease the learning rate</span>
@@ -12641,11 +12686,11 @@ Default GPU Device: /gpu:0
 <span class="c1"># Embedding Dimension Size</span>
 <span class="n">embed_dim</span> <span class="o">=</span> <span class="mi">100</span>           <span class="c1"># making it 300 dim does not add more sense to the output script :)</span>
 <span class="c1"># Sequence Length</span>
-<span class="n">seq_length</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">seq_length</span> <span class="o">=</span> <span class="mi">29</span>           <span class="c1"># Sequence Mean length + 2*sigma = 28.768720438551192</span>
 <span class="c1"># Learning Rate</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.002</span>     <span class="c1"># largest lr that trained to decent loss</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.005</span>     <span class="c1"># largest lr that trained to decent loss (see below for empirical experiments&#39; results)</span>
 <span class="c1"># Show stats for every n number of batches</span>
-<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="mi">90</span> <span class="c1"># there are 18 batches per epoc at current seq_length</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">DON&#39;T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE</span>
@@ -12669,7 +12714,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[152]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12717,9 +12762,47 @@ Default GPU Device: /gpu:0
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Learning-rate-experiments-results">Learning rate experiments results<a class="anchor-link" href="#Learning-rate-experiments-results">&#182;</a></h4><p>I have epirically obtained following losses after training for 100 epochs with above parameters set:</p>
+<ul>
+<li>lr = 0.01 | Epoch 100 Batch    0/18   train_loss = 1.835</li>
+<li>lr = 0.01 | Epoch 100 Batch    0/18   train_loss = 0.694</li>
+<li>lr = 0.01 | Epoch 100 Batch    0/18   train_loss = 1.843</li>
+<li>lr = 0.01 | Epoch 100 Batch    0/18   train_loss = 2.457</li>
+<li>lr = 0.015| Epoch 100 Batch    0/18   train_loss = 5.483</li>
+<li>lr = 0.02 | Epoch  95 Batch    0/18   train_loss = 4.647</li>
+<li>lr = 0.05 | Epoch  97 Batch    4/18   train_loss = 4.227</li>
+</ul>
+<p>There's a high variance of the results. The same learnign rate of 0.01 ceteris paribus is producing loss of 0.69 and 2.45 at the 100 epochs.
+On the other hand higher lr is clearly not beneficial.</p>
+<p>I have recived following feedback on my first submition:</p>
+<blockquote><p>The learning rate chosen here is too low. This doesn't allow your network to converge fast enough. You should add this a bit. I usually suggest some where near 0.01. not higher than 0.1 though and not lesser than 0.01 :wink:</p>
+</blockquote>
+<p>The following experiments' terults clearly indicate that the best and most stable results are obtained when learning rate it lower than 0.01, somwhere arount 0.005 while at 0.002 the model sometimes is converging too slow.</p>
+<ul>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.093</li>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.103</li>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.131</li>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.485</li>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.199</li>
+<li>lr = 0.005 | Epoch 100 Batch    0/18   train_loss = 0.264</li>
+<li>lr = 0.002 | Epoch 105 Batch    0/18   train_loss = 0.195</li>
+<li>lr = 0.002 | Epoch 105 Batch    0/18   train_loss = 0.218</li>
+<li>lr = 0.002 | Epoch 100 Batch    0/18   train_loss = 2.592</li>
+<li>lr = 0.002 | Epoch 100 Batch    0/18   train_loss = 0.393</li>
+<li>lr = 0.002 | Epoch 100 Batch    0/18   train_loss = 1.704</li>
+</ul>
+<p>Taking that into account I insist on submitting the project with learning rate of 0.005 :)</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[153]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12772,70 +12855,27 @@ Default GPU Device: /gpu:0
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch   0 Batch    0/4   train_loss = 8.822
-Epoch  12 Batch    2/4   train_loss = 5.940
-Epoch  25 Batch    0/4   train_loss = 5.888
-Epoch  37 Batch    2/4   train_loss = 5.789
-Epoch  50 Batch    0/4   train_loss = 5.397
-Epoch  62 Batch    2/4   train_loss = 5.165
-Epoch  75 Batch    0/4   train_loss = 4.981
-Epoch  87 Batch    2/4   train_loss = 4.822
-Epoch 100 Batch    0/4   train_loss = 4.648
-Epoch 112 Batch    2/4   train_loss = 4.574
-Epoch 125 Batch    0/4   train_loss = 4.372
-Epoch 137 Batch    2/4   train_loss = 4.252
-Epoch 150 Batch    0/4   train_loss = 4.064
-Epoch 162 Batch    2/4   train_loss = 4.030
-Epoch 175 Batch    0/4   train_loss = 3.836
-Epoch 187 Batch    2/4   train_loss = 3.744
-Epoch 200 Batch    0/4   train_loss = 3.534
-Epoch 212 Batch    2/4   train_loss = 3.417
-Epoch 225 Batch    0/4   train_loss = 3.233
-Epoch 237 Batch    2/4   train_loss = 3.113
-Epoch 250 Batch    0/4   train_loss = 2.980
-Epoch 262 Batch    2/4   train_loss = 2.887
-Epoch 275 Batch    0/4   train_loss = 2.775
-Epoch 287 Batch    2/4   train_loss = 2.608
-Epoch 300 Batch    0/4   train_loss = 2.558
-Epoch 312 Batch    2/4   train_loss = 2.294
-Epoch 325 Batch    0/4   train_loss = 2.193
-Epoch 337 Batch    2/4   train_loss = 2.031
-Epoch 350 Batch    0/4   train_loss = 1.921
-Epoch 362 Batch    2/4   train_loss = 1.847
-Epoch 375 Batch    0/4   train_loss = 1.689
-Epoch 387 Batch    2/4   train_loss = 1.611
-Epoch 400 Batch    0/4   train_loss = 1.461
-Epoch 412 Batch    2/4   train_loss = 1.349
-Epoch 425 Batch    0/4   train_loss = 1.261
-Epoch 437 Batch    2/4   train_loss = 1.109
-Epoch 450 Batch    0/4   train_loss = 1.035
-Epoch 462 Batch    2/4   train_loss = 0.990
-Epoch 475 Batch    0/4   train_loss = 0.880
-Epoch 487 Batch    2/4   train_loss = 0.777
-Epoch 500 Batch    0/4   train_loss = 0.814
-Epoch 512 Batch    2/4   train_loss = 0.638
-Epoch 525 Batch    0/4   train_loss = 0.603
-Epoch 537 Batch    2/4   train_loss = 0.559
-Epoch 550 Batch    0/4   train_loss = 0.497
-Epoch 562 Batch    2/4   train_loss = 0.449
-Epoch 575 Batch    0/4   train_loss = 0.385
-Epoch 587 Batch    2/4   train_loss = 0.425
-Epoch 600 Batch    0/4   train_loss = 0.326
-Epoch 612 Batch    2/4   train_loss = 0.275
-Epoch 625 Batch    0/4   train_loss = 0.246
-Epoch 637 Batch    2/4   train_loss = 0.225
-Epoch 650 Batch    0/4   train_loss = 0.224
-Epoch 662 Batch    2/4   train_loss = 0.245
-Epoch 675 Batch    0/4   train_loss = 0.168
-Epoch 687 Batch    2/4   train_loss = 0.145
-Epoch 700 Batch    0/4   train_loss = 0.130
-Epoch 712 Batch    2/4   train_loss = 0.118
-Epoch 725 Batch    0/4   train_loss = 0.107
-Epoch 737 Batch    2/4   train_loss = 0.097
-Epoch 750 Batch    0/4   train_loss = 0.088
-Epoch 762 Batch    2/4   train_loss = 0.081
-Epoch 775 Batch    0/4   train_loss = 0.074
-Epoch 787 Batch    2/4   train_loss = 0.068
+<pre>Epoch   0 Batch    0/18   train_loss = 8.822
+Epoch   5 Batch    0/18   train_loss = 6.274
+Epoch  10 Batch    0/18   train_loss = 5.965
+Epoch  15 Batch    0/18   train_loss = 5.237
+Epoch  20 Batch    0/18   train_loss = 4.420
+Epoch  25 Batch    0/18   train_loss = 3.791
+Epoch  30 Batch    0/18   train_loss = 3.126
+Epoch  35 Batch    0/18   train_loss = 2.550
+Epoch  40 Batch    0/18   train_loss = 2.187
+Epoch  45 Batch    0/18   train_loss = 1.617
+Epoch  50 Batch    0/18   train_loss = 1.316
+Epoch  55 Batch    0/18   train_loss = 0.912
+Epoch  60 Batch    0/18   train_loss = 0.614
+Epoch  65 Batch    0/18   train_loss = 0.396
+Epoch  70 Batch    0/18   train_loss = 0.282
+Epoch  75 Batch    0/18   train_loss = 0.197
+Epoch  80 Batch    0/18   train_loss = 0.130
+Epoch  85 Batch    0/18   train_loss = 0.103
+Epoch  90 Batch    0/18   train_loss = 0.098
+Epoch  95 Batch    0/18   train_loss = 0.095
+Epoch 100 Batch    0/18   train_loss = 0.094
 Model Trained and Saved
 </pre>
 </div>
@@ -12856,7 +12896,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[154]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12881,7 +12921,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[155]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12919,7 +12959,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[156]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_tensors</span><span class="p">(</span><span class="n">loaded_graph</span><span class="p">):</span>
@@ -12977,7 +13017,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[157]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">int_to_vocab</span><span class="p">,</span> <span class="n">alogithm</span><span class="o">=</span><span class="s2">&quot;propotional&quot;</span><span class="p">):</span>
@@ -13049,7 +13089,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[158]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen_length</span> <span class="o">=</span> <span class="mi">200</span>
@@ -13113,28 +13153,21 @@ Model Trained and Saved
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./save
-moe_szyslak: okay it&#39;s over! get &#39;em out of here!
-moe_szyslak:(to bears) all right, andalay! andalay!
+moe_szyslak: g&#39;on, take it all. get it all out of here.
+barney_gumble: you know, moe, you might want to keep the fire extinguishers.(reading card) there the barney_gumble: the time.
+young_marge: marge did you make me to meet you.
+carny: not here. if i work that rat here.
+moe_szyslak: not dump at the bar?
+lenny_leonard: hi, you!
+moe_szyslak: oh, those. i&#39;ve had just show her guy.
+moe_szyslak: but you&#39;re outta one up when i just gotta be right back when i learned to see it.
+barney_gumble: i had some more than i&#39;d brought to talk myself...
+thought_bubble_lenny: moe, ya mom at you, bart?(sighs) we like you like it.
+homer_simpson: well, but find &#39;em.
+homer_simpson:(sobs) oh, you precious, it&#39;ll just billboard that i&#39;ve need to see the wrong paper. i need a spy that these accidents gave up.
 
 
-homer_simpson: sometimes you gotta go where everybody knows your name.
-homer_simpson:(very up) hi guys!
-homer_simpson: moe, get the darts. i want to play.
-moe_szyslak: no. we&#39;re phasing out the games. people drink less how&#34; see barney.
-moe_szyslak: oh, that&#39;s halfway all my been like to get around for your set out!
-
-
-
-grampa_simpson: i the two conference are you.
-
-
-homer_simpson: when i make some ball than here, things would be appalled.
-bart_simpson: and lis, when we can say out there, etc.
-moe_szyslak: whoa, who belong, uh, when i get this beer?
-moe_szyslak: well, i&#39;ve used to go here. how&#39;s it out. but, can i leave married here that guy.
-lenny_leonard: ooh, how did i do like it...(counting guns)
-homer_simpson: oh everyone!
-
+homer_simpson:(chuckles) i know how that look at the flag
 </pre>
 </div>
 </div>
@@ -13154,7 +13187,7 @@ homer_simpson: oh everyone!
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[159]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen_length</span> <span class="o">=</span> <span class="mi">200</span>
@@ -13218,24 +13251,23 @@ homer_simpson: oh everyone!
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./save
-moe_szyslak:(as dentist) okay, this might hurt a little.(as patient, cotton in mouth) no problem.
-moe_szyslak:(in pain) oh, sweet mother of mary!
-homer_simpson:(weirded-out noise, then:) okay, milhouse, what do you want to do?
-milhouse_van_houten: well, the school&#39;s having a bake sale.
-homer_simpson: ol&#39; betsy&#39;ll get us there.
+moe_szyslak:(simultaneous) i/you could do...
+homer_simpson:(singing, furious finale) she couldn&#39;t possibly do worse!
+marge_simpson: homer?!(belch)
 
 
-homer_simpson:(runs in) hey moe, got any milk?
-moe_szyslak: it&#39;s either milk... or paint.
-homer_simpson:(disappointed) it&#39;s paint. or is it?
-homer_simpson: yeah, it&#39;s paint.
-moe_szyslak: oh. then i&#39;ll have to charge that?
-lenny_leonard: with me-- i&#39;m all you you?
-moe_szyslak:(flatly sound)
-lenny_leonard: and, i know, i got have on as an barney?
-carl_carlson: wha, but it&#39;ll tell you!...
-all:(smelling homer) hey, barney. what do you been clean to the cops.
-homer_simpson:(japanese laugh) and how
+homer_simpson:(on up) huh?
+moe_szyslak: oh, the fans have gettin&#39; tradition in therapy.
+homer_simpson: oh, you were taken not comin&#39; for me!
+moe_szyslak: yeah, i gotta be mad up all&#34;. this is good in the power time.
+lenny_leonard: for the big bar in this town. there&#39;s a lot of enveloped to you.
+moe_szyslak: oh, you, you know, he&#39;s driving in the jigger.
+homer_simpson: well, i been managing&#34; these thing there.
+moe_szyslak: oh, you guys are so lisa!
+moe_szyslak: yeah, now that&#39;s not a air once. you&#39;re one comes of my house.
+barney_gumble: hey, hey, ya god! / yeah!
+moe_szyslak: well, i can&#39;t hear any one.
+moe_szyslak: hey, come with me?(looks around) hi, homer. oh, i&#39;m gonna
 </pre>
 </div>
 </div>
